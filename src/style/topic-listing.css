@@ -66,6 +66,7 @@ input[type=number]::-webkit-outer-spin-button {
   border: 0;
   background: transparent;
   line-height: 0;
+	touch-action: manipulation;
 }
 
 .topic button[disabled] {
