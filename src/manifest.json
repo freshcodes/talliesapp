@@ -1,6 +1,6 @@
 {
-  "name": "tallies.app",
-  "short_name": "tallies.app",
+  "name": "Tallies",
+  "short_name": "Tallies",
   "start_url": "/",
   "display": "standalone",
   "orientation": "portrait",
