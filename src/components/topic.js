@@ -29,9 +29,15 @@ export class Topic extends Component {
     }
   }
 
+  selectContentOnFocus (event) {
+    setTimeout(() => {
+      event.target.setSelectionRange(0, event.target.value.length)
+    }, 0)
+  }
+
   renderTallies (tallies) {
     if (this.props.edit) {
-      return (<span class='count'><input ref={input => { this.talliesInput = input }} type='text' pattern='[0-9]*' value={tallies} min='0' step='1' onblur={this.updateTallies} onfocus={(event) => event.target.setSelectionRange(0, event.target.value.length)} /></span>)
+      return (<span class='count'><input ref={input => { this.talliesInput = input }} type='text' pattern='[0-9]*' value={tallies} min='0' step='1' onblur={this.updateTallies} onfocus={this.selectContentOnFocus} /></span>)
     } else {
       return (<span class='count'>{tallies}</span>)
     }
