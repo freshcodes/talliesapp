@@ -31,7 +31,7 @@ export class Topic extends Component {
 
   renderTallies (tallies) {
     if (this.props.edit) {
-      return (<span class='count'><input ref={input => { this.talliesInput = input }} type='number' value={tallies} min='0' step='1' onblur={this.updateTallies} /></span>)
+      return (<span class='count'><input ref={input => { this.talliesInput = input }} type='text' pattern='[0-9]*' value={tallies} min='0' step='1' onblur={this.updateTallies} onfocus={(event) => event.target.setSelectionRange(0, event.target.value.length)} /></span>)
     } else {
       return (<span class='count'>{tallies}</span>)
     }
