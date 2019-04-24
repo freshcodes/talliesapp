@@ -22,6 +22,8 @@ firebase.auth().onAuthStateChanged(currentUser => {
   }
 }, error => {
   console.error(error)
+  store.setState({ currentUser: null, showSplashScreen: false })
+  route('/sign-in')
 })
 
 export default () => {
