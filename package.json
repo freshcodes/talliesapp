@@ -64,7 +64,7 @@
   },
   "dependencies": {
     "copy-webpack-plugin": "^4.6.0",
-    "firebase": "^5.9.4",
+    "firebase": "^5.10.0",
     "firebaseui": "^3.5.2",
     "preact": "^8.3.1",
     "preact-router": "^2.5.7",
