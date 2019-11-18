@@ -7,7 +7,7 @@ const Footer = () => (
       <Link href='/privacy-policy'>Privacy Policy</Link>
       <Link href='/terms-of-service'>Terms Of Service</Link>
     </nav>
-    <p>&copy; Copyright 2019 Fresh Codes LLC</p>
+    <p><a href='https://fresh.codes'><img src='/assets/fresh-codes.svg' alt='Fresh Codes' width='200' /></a></p>
   </footer>
 )
 
