@@ -13,9 +13,9 @@ firebase.auth().onAuthStateChanged(currentUser => {
   store.setState({ currentUser: currentUser, showSplashScreen: false })
 
   if (!currentUser) {
-    route('/sign-in')
     // Clearing out any user based data that might be in the store
     store.setState({ topics: [], topicRefs: {}, talliesForCurrentDate: [], tallyRefsForCurrentDate: {} })
+    route('/sign-in')
   } else {
     // Kick off loading the topics since we have a currentUser
     loadTopics()
