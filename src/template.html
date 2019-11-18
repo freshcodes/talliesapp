@@ -1,49 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>Tallies</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-title" content="Tallies">
-    <meta name="description" content="Keep count of stuff.">
-    <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-touch-icon.png">
-    <link rel="manifest" href="<%= htmlWebpackPlugin.files.publicPath %>manifest.json">
-    <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
-    <% if (htmlWebpackPlugin.options.manifest.theme_color) { %>
-      <meta name="theme-color" content="<%= htmlWebpackPlugin.options.manifest.theme_color %>">
-    <% } %>
-    <% for (var chunk of webpack.chunks) { %>
-     <% if (chunk.names.length === 1 && chunk.names[0] === 'polyfills') continue; %>
-      <% for (var file of chunk.files) { %>
-        <% if (htmlWebpackPlugin.options.preload && file.match(/\.(js|css)$/)) { %>
-          <link rel="preload" href="<%= htmlWebpackPlugin.files.publicPath + file %>" as="<%= file.match(/\.css$/)?'style':'script' %>">
-        <% } else if (file.match(/manifest\.json$/)) { %>
-          <link rel="manifest" href="<%= htmlWebpackPlugin.files.publicPath + file %>">
+    <head>
+        <meta charset="utf-8">
+        <title><% preact.title %></title>
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
+        <link rel="mask-icon" href="/assets/icons/safari-pinned-tab.svg" color="<%= htmlWebpackPlugin.options.manifest.theme_color %>">
+        <meta name="msapplication-config" content="/browserconfig.xml">
+        <meta name="msapplication-TileColor" content="<%= htmlWebpackPlugin.options.manifest.theme_color %>">
+        <meta name="apple-mobile-web-app-title" content="Tallies">
+        <meta name="twitter:site_name" content="Tallies.app">
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:description" content="Keep count of stuff.">
+        <meta property="og:site_name" content="Tallies.app">
+        <meta property="og:title" content="Tallies.app">
+        <meta property="og:url" content="https://tallies.app">
+        <meta property="og:description" content="Keep count of stuff.">
+        <meta property="og:type" content="website">
+        <meta name="description" content="Keep count of stuff.">
+        <% preact.headEnd %>
+    </head>
+    <body>
+        <% preact.bodyEnd %>
+        <% if (htmlWebpackPlugin.options.config.isProd) { %>
+        <script>
+          if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js')
+              .then(function (registration) {
+                console.log('Service Worker registration successful with scope: ', registration.scope)
+              })
+              .catch(function (err) {
+                console.log('Service Worker registration failed: ', err)
+              })
+          }
+        </script>
         <% } %>
-      <% } %>
-    <% } %>
-  </head>
-  <body>
-    <%= htmlWebpackPlugin.options.ssr({
-      url: '/'
-    }) %>
-    <script defer src="<%= htmlWebpackPlugin.files.chunks['bundle'].entry %>"></script>
-    <script>window.fetch||document.write('<script src="<%= htmlWebpackPlugin.files.chunks["polyfills"].entry %>"><\/script>')</script>
-    <% if (htmlWebpackPlugin.options.config.isProd) { %>
-    <script>
-      if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('/sw.js')
-          .then(function (registration) {
-            console.log('Service Worker registration successful with scope: ', registration.scope)
-          })
-          .catch(function (err) {
-            console.log('Service Worker registration failed: ', err)
-          })
-      }
-    </script>
-    <% } %>
-  </body>
+        <noscript>Please enable javascript to play tic tac toe.</noscript>
+    </body>
 </html>
