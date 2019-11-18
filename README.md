@@ -1,6 +1,16 @@
 # Tallies.app
 
-A PWA using firebase auth and store to keep count of stuff.
+A PWA using firebase hosting, auth, and firestore to keep count of stuff.
+
+
+## Deploy
+
+All the firebase configuration comes from the environment (see sample.env). You'll need to build the project prior to deploying.
+
+``` bash
+npm run build
+npx firebase deploy
+```
 
 
 ## CLI Commands
@@ -21,5 +31,3 @@ npm run serve
 # run tests with jest and preact-render-spy 
 npm run test
 ```
-
-For detailed explanation on how things work, checkout the [CLI Readme](https://github.com/developit/preact-cli/blob/master/README.md).
