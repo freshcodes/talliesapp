@@ -5,8 +5,7 @@
   "license": "MIT",
   "scripts": {
     "start": "npm run -s dev",
-    "build": "preact build --no-sw --template src/template.html",
-    "serve": "preact --",
+    "build": "preact build --no-sw --template src/template.html --no-prerender",
     "dev": "preact watch --template src/template.html",
     "lint": "eslint --fix src *.js",
     "test": "jest ./tests"
