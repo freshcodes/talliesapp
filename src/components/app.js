@@ -24,7 +24,7 @@ export class App extends Component {
   }
 
   render ({ currentUser, showSplashScreen }) {
-    let app = (
+    const app = (
       <div>
         <Header currentUser={currentUser} signOut={this.signOut} />
         <Router onChange={this.handleRoute}>
@@ -39,7 +39,7 @@ export class App extends Component {
     )
     return (
       <div id='app'>
-        { !showSplashScreen && app }
+        {!showSplashScreen && app}
         <SplashScreen show={showSplashScreen} />
       </div>
     )

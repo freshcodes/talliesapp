@@ -1,3 +1,4 @@
+/* global API_KEY, AUTH_DOMAIN, DATABASE_URL, PROJECT_ID, STORAGE_BUCKET, MESSAGING_SENDER_ID */
 import firebase from 'firebase/app'
 import 'firebase/auth'
 import 'firebase/firestore'

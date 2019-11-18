@@ -4,7 +4,7 @@ import { topicDateNavActions } from '../lib/store'
 
 export class TopicDateNav extends Component {
   get isCurrentDateToday () {
-    let { currentDate, today } = this.props
+    const { currentDate, today } = this.props
     return currentDate.getTime() === today.getTime()
   }
 

@@ -35,19 +35,19 @@ const actions = (store) => ({
 const topicActions = (store) => ({
   addTopic (state, name) {
     if (!name) return
-    let doc = {
+    const doc = {
       uid: state.currentUser.uid,
       name: name,
       state: 'active'
     }
-    let collection = firebase.firestore().collection('topics')
+    const collection = firebase.firestore().collection('topics')
     collection.add(doc).catch(error => {
       console.debug(`Could not add topic: ${name}`, error)
     })
   },
 
   updateTopicName (state, topicId, name) {
-    let ref = state.topicRefs[topicId]
+    const ref = state.topicRefs[topicId]
     if (!ref || !name) return
     ref.update({ name: name }).catch(error => {
       console.debug(`Could not update topic name: ${topicId} ${name}`, error)
@@ -55,7 +55,7 @@ const topicActions = (store) => ({
   },
 
   markTopicForDeletion (state, topicId) {
-    let ref = state.topicRefs[topicId]
+    const ref = state.topicRefs[topicId]
     if (!ref) return
     ref.update({ state: 'deleted' }).catch(error => {
       console.debug(`Could not delete topic: ${topicId}`, error)
@@ -63,15 +63,15 @@ const topicActions = (store) => ({
   },
 
   incrementForCurrentDate (state, topicId) {
-    let ref = state.tallyRefsForCurrentDate[topicId]
+    const ref = state.tallyRefsForCurrentDate[topicId]
     if (ref) {
       let currentCount = state.talliesForCurrentDate[topicId]
       ref.update({ count: ++currentCount }).catch(error => {
         console.debug(`Could not increment (by adding to existing tally record) topic for current date: ${topicId} ${state.currentDate}`, error)
       })
     } else {
-      let collection = firebase.firestore().collection('tallies')
-      let doc = {
+      const collection = firebase.firestore().collection('tallies')
+      const doc = {
         topicid: topicId,
         uid: state.currentUser.uid,
         count: 1,
@@ -84,17 +84,17 @@ const topicActions = (store) => ({
   },
 
   decrementForCurrentDate (state, topicId) {
-    let ref = state.tallyRefsForCurrentDate[topicId]
+    const ref = state.tallyRefsForCurrentDate[topicId]
     if (!ref) return
     let currentCount = state.talliesForCurrentDate[topicId]
-    let newCount = Math.max(0, --currentCount)
+    const newCount = Math.max(0, --currentCount)
     ref.update({ count: newCount }).catch(error => {
       console.debug(`Could not decrement topic for current date: ${topicId} ${state.currentDate}`, error)
     })
   },
 
   overwriteTalliesForCurrentDate (state, topicId, count) {
-    let ref = state.tallyRefsForCurrentDate[topicId]
+    const ref = state.tallyRefsForCurrentDate[topicId]
     if (!ref) return
     ref.update({ count }).catch(error => {
       console.debug(`Could not overwrite tallies for current date: ${topicId} ${state.currentDate} ${count}`, error)
@@ -104,13 +104,13 @@ const topicActions = (store) => ({
 
 const topicDateNavActions = (store) => ({
   goToPreviousDay (state) {
-    let date = new Date(state.currentDate.getTime())
+    const date = new Date(state.currentDate.getTime())
     date.setDate(date.getDate() - 1)
     return { currentDate: date }
   },
 
   goToNextDay (state) {
-    let date = new Date(state.currentDate.getTime())
+    const date = new Date(state.currentDate.getTime())
 
     if (date.getTime() === state.today.getTime()) return
 
@@ -121,9 +121,9 @@ const topicDateNavActions = (store) => ({
 
 let topicsQuery, clearTopicsQueryOnSnapshot
 function loadTopics () {
-  let { currentUser } = store.getState()
+  const { currentUser } = store.getState()
   if (!currentUser) return // TODO: should this reset state?
-  let collection = firebase.firestore().collection('topics')
+  const collection = firebase.firestore().collection('topics')
   topicsQuery = topicsQuery || collection.where('uid', '==', currentUser.uid)
     .where('state', '==', 'active')
     .orderBy('name', 'asc')
@@ -132,8 +132,8 @@ function loadTopics () {
   clearTopicsQueryOnSnapshot = topicsQuery.onSnapshot(snapshot => {
     if (!snapshot.size) return store.setState({ topics: [], topicRefs: {} })
 
-    let topicRefs = {}
-    let topics = snapshot.docs.map(doc => {
+    const topicRefs = {}
+    const topics = snapshot.docs.map(doc => {
       topicRefs[doc.id] = doc.ref
       return Object.assign({ id: doc.id }, doc.data())
     })
@@ -144,10 +144,10 @@ function loadTopics () {
 
 let clearTopicTalliesForCurrentDateQueryOnSnapshot
 function loadTopicTalliesForCurrentDate () {
-  let { currentUser, currentDate } = store.getState()
+  const { currentUser, currentDate } = store.getState()
   if (!currentUser) return // TODO: should this reset state?
-  let collection = firebase.firestore().collection('tallies')
-  let query = collection.where('uid', '==', currentUser.uid)
+  const collection = firebase.firestore().collection('tallies')
+  const query = collection.where('uid', '==', currentUser.uid)
     .where('date', '==', currentDate)
 
   if (clearTopicTalliesForCurrentDateQueryOnSnapshot) {
@@ -158,9 +158,9 @@ function loadTopicTalliesForCurrentDate () {
   clearTopicTalliesForCurrentDateQueryOnSnapshot = query.onSnapshot(snapshot => {
     if (!snapshot.size) return
 
-    let talliesForCurrentDate = {}; let tallyRefsForCurrentDate = {}
+    const talliesForCurrentDate = {}; const tallyRefsForCurrentDate = {}
     snapshot.docs.forEach(doc => {
-      let data = doc.data()
+      const data = doc.data()
       talliesForCurrentDate[data.topicid] = data.count
       tallyRefsForCurrentDate[data.topicid] = doc.ref
     })
@@ -171,8 +171,8 @@ function loadTopicTalliesForCurrentDate () {
 // Listen for focus even for long running browser instances
 // and check if today is still what we think it is
 window.addEventListener('focus', () => {
-  let actualToday = getToday()
-  let { today, currentDate } = store.getState()
+  const actualToday = getToday()
+  const { today, currentDate } = store.getState()
 
   // Advance today in state if today has changed
   if (today.getTime() !== actualToday.getTime()) store.setState({ today: actualToday })

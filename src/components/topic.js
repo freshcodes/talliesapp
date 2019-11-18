@@ -4,13 +4,13 @@ import { topicActions } from '../lib/store'
 
 export class Topic extends Component {
   updateName = () => {
-    let name = this.nameInput.value
+    const name = this.nameInput.value
     if (!name) this.nameInput.value = this.props.topic.name
     else if (name !== this.props.topic.name) this.props.updateTopicName(this.props.topic.id, name)
   }
 
   updateTallies = () => {
-    let tallies = parseInt(this.talliesInput.value, 10)
+    const tallies = parseInt(this.talliesInput.value, 10)
     if (tallies < 0) this.talliesInput.value = this.props.tallies
     else if (tallies !== this.props.tallies) this.props.overwriteTalliesForCurrentDate(this.props.topic.id, tallies)
   }
