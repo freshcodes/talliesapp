@@ -25,10 +25,10 @@ export class SignIn extends Component {
 
   render () {
     return (
-      <div class='sign-in'>
+      <main class='sign-in'>
         <h2>Sign In</h2>
         <div id='firebaseui-auth-container' />
-      </div>
+      </main>
     )
   }
 }

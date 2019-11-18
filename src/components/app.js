@@ -10,7 +10,6 @@ import SplashScreen from './splash-screen'
 // Code-splitting is automated for routes
 import Home from '../routes/home'
 import SignIn from '../routes/sign-in'
-import About from '../routes/about'
 import PrivacyPolicy from '../routes/privacy-policy'
 import TermsOfService from '../routes/terms-of-service'
 
@@ -30,7 +29,6 @@ export class App extends Component {
         <Router onChange={this.handleRoute}>
           <Home path='/' />
           <SignIn path='/sign-in' />
-          <About path='/about' />
           <PrivacyPolicy path='/privacy-policy' />
           <TermsOfService path='/terms-of-service' />
         </Router>

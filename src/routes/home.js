@@ -12,10 +12,10 @@ export class Home extends Component {
 
   render () {
     return (
-      <div id='topic-listing'>
+      <main id='topic-listing'>
         <TopicDateNav />
         <Topics />
-      </div>
+      </main>
     )
   }
 }
