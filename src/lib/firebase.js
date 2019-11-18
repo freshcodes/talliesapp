@@ -4,12 +4,12 @@ import 'firebase/firestore'
 
 // Initialize Firebase
 const firebaseConfig = {
-  apiKey: 'AIzaSyAPN68JtGiM8gZdZSlZQoqdoUReG97Rg-A',
-  authDomain: 'tallies-cdff9.firebaseapp.com',
-  databaseURL: 'https://tallies-cdff9.firebaseio.com',
-  projectId: 'tallies-cdff9',
-  storageBucket: 'tallies-cdff9.appspot.com',
-  messagingSenderId: '384438663372'
+  apiKey: API_KEY,
+  authDomain: AUTH_DOMAIN,
+  databaseURL: DATABASE_URL,
+  projectId: PROJECT_ID,
+  storageBucket: STORAGE_BUCKET,
+  messagingSenderId: MESSAGING_SENDER_ID
 }
 firebase.initializeApp(firebaseConfig)
 
