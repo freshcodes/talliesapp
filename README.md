@@ -1,4 +1,7 @@
-# preact-cli-template
+# Tallies.app
+
+A PWA using firebase auth and store to keep count of stuff.
+
 
 ## CLI Commands
 
