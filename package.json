@@ -5,10 +5,10 @@
   "license": "MIT",
   "scripts": {
     "start": "npm run -s dev",
-    "build": "preact build --no-sw --template src/template.html --no-prerender",
-    "dev": "preact watch --template src/template.html",
-    "lint": "eslint --fix src *.js",
-    "test": "jest ./tests"
+    "build": "preact build --no-prerender",
+    "dev": "preact watch",
+    "lint": "eslint --fix src *.js && stylelint --fix \"**/*.css\"",
+    "test": "jest"
   },
   "eslintConfig": {
     "parser": "babel-eslint",
@@ -43,34 +43,49 @@
   "eslintIgnore": [
     "build/*"
   ],
+  "stylelint": {
+    "extends": "stylelint-config-standard",
+    "rules": {
+      "font-family-no-missing-generic-family-keyword": null,
+      "at-rule-no-unknown": null
+    },
+    "ignoreFiles": [
+      "node_modules/**",
+      "build/**"
+    ]
+  },
   "devDependencies": {
-    "babel-eslint": "^10.0.1",
+    "babel-eslint": "^10.1.0",
     "dotenv": "^8.2.0",
-    "enzyme": "^3.10.0",
-    "enzyme-adapter-preact-pure": "^2.2.0",
-    "eslint": "^6.0.1",
-    "eslint-config-standard": "^14.1.0",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-preact-pure": "^2.2.3",
+    "eslint": "^7.9.0",
+    "eslint-config-standard": "^14.1.1",
     "eslint-config-standard-react": "^9.2.0",
-    "eslint-plugin-import": "^2.14.0",
-    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.0.1",
-    "eslint-plugin-react": "^7.11.1",
+    "eslint-plugin-react": "^7.20.6",
     "eslint-plugin-standard": "^4.0.0",
-    "firebase-mock": "^2.2.10",
+    "firebase-mock": "^2.3.2",
+    "husky": "^4.3.0",
     "identity-obj-proxy": "^3.0.0",
-    "jest": "^24.9.0",
-    "jest-preset-preact": "^1.0.0",
-    "preact-cli": "^3.0.0-rc.6",
+    "jest": "^26.4.2",
+    "jest-preset-preact": "^4.0.2",
+    "lint-staged": "^10.3.0",
+    "preact-cli": "^3.0.2",
     "preact-render-spy": "^1.2.1",
-    "workbox-webpack-plugin": "^4.3.0"
+    "string-replace-loader": "^2.3.0",
+    "stylelint": "^13.7.1",
+    "stylelint-config-standard": "^20.0.0"
   },
   "dependencies": {
-    "firebase": "^7.4.0",
-    "firebaseui": "^4.3.0",
-    "preact": "^10.0.5",
-    "preact-render-to-string": "^5.1.0",
-    "preact-router": "^3.0.0",
-    "unistore": "^3.5.0"
+    "firebase": "7.20.0",
+    "firebaseui": "^4.6.1",
+    "preact": "^10.4.8",
+    "preact-render-to-string": "^5.1.10",
+    "preact-router": "^3.2.1",
+    "unistore": "^3.5.2"
   },
   "browserslist": [
     "> 5%",
@@ -88,5 +103,15 @@
       "<rootDir>/tests/__mocks__/browserMocks.js",
       "<rootDir>/tests/__mocks__/setupTests.js"
     ]
+  },
+  "lint-staged": {
+    "*.js": "eslint --fix",
+    "*.scss": "stylelint --fix"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "npm run test"
+    }
   }
 }

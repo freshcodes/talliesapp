@@ -9,7 +9,7 @@
   padding: 0;
   border: 1px solid #ccc;
   border-bottom: 0;
-	box-shadow: 1px 1px 5px 0px rgb(220, 220, 220);
+  box-shadow: 1px 1px 5px 0 rgb(220, 220, 220);
 }
 
 .topics li {
@@ -43,13 +43,14 @@
 .topic .count {
   padding: 0 0.5rem;
 }
+
 .topic .count input {
   width: 50px;
   font-size: 16px;
   border: 0;
   border-bottom: 1px solid #ccc;
   text-align: right;
-	border-radius: 0;
+  border-radius: 0;
 }
 
 .topic .buttons {
@@ -61,7 +62,7 @@
   border: 0;
   background: transparent;
   line-height: 0;
-	touch-action: manipulation;
+  touch-action: manipulation;
 }
 
 .topic button[disabled] {

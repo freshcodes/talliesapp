@@ -1,18 +1,22 @@
 const dotenv = require('dotenv')
 dotenv.config()
 
+const path = require('path')
+
 const webpack = require('webpack')
-const WorkboxPlugin = require('workbox-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 export default config => {
-  config.plugins.push(
-    new WorkboxPlugin.InjectManifest({
-      swSrc: './src/sw.js',
-      swDest: './sw.js',
-      include: [/\.html$/, /\.js$/, /\.svg$/, /\.css$/, /\.png$/, /\.ico$/]
-    })
-  )
+  // https://github.com/firebase/firebaseui-web/issues/722#issuecomment-694277747
+  config.module.rules.push({
+    test: /esm\.js$/,
+    loader: 'string-replace-loader',
+    include: path.resolve('node_modules/firebaseui/dist'),
+    query: {
+      search: "import * as firebase from 'firebase/app';",
+      replace: "import firebase from 'firebase/app';"
+    }
+  })
 
   config.plugins.push(new CopyWebpackPlugin([{ context: `${__dirname}/src/assets`, from: 'robots.txt' }]))
   config.plugins.push(new CopyWebpackPlugin([{ context: `${__dirname}/src/assets`, from: 'browserconfig.xml' }]))
@@ -24,7 +28,8 @@ export default config => {
       DATABASE_URL: JSON.stringify(process.env.DATABASE_URL),
       PROJECT_ID: JSON.stringify(process.env.PROJECT_ID),
       STORAGE_BUCKET: JSON.stringify(process.env.STORAGE_BUCKET),
-      MESSAGING_SENDER_ID: JSON.stringify(process.env.MESSAGING_SENDER_ID)
+      MESSAGING_SENDER_ID: JSON.stringify(process.env.MESSAGING_SENDER_ID),
+      APP_ID: JSON.stringify(process.env.APP_ID)
     })
   )
 

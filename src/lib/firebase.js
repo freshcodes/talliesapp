@@ -1,4 +1,4 @@
-/* global API_KEY, AUTH_DOMAIN, DATABASE_URL, PROJECT_ID, STORAGE_BUCKET, MESSAGING_SENDER_ID */
+/* global API_KEY, AUTH_DOMAIN, DATABASE_URL, PROJECT_ID, STORAGE_BUCKET, MESSAGING_SENDER_ID, APP_ID */
 import firebase from 'firebase/app'
 import 'firebase/auth'
 import 'firebase/firestore'
@@ -10,7 +10,8 @@ const firebaseConfig = {
   databaseURL: DATABASE_URL,
   projectId: PROJECT_ID,
   storageBucket: STORAGE_BUCKET,
-  messagingSenderId: MESSAGING_SENDER_ID
+  messagingSenderId: MESSAGING_SENDER_ID,
+  appId: APP_ID
 }
 firebase.initializeApp(firebaseConfig)
 

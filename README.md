@@ -1,7 +1,5 @@
 # Tallies.app
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/freshcodes/talliesapp.svg)](https://greenkeeper.io/)
-
 A PWA using firebase hosting, auth, and firestore to keep count of stuff.
 
 

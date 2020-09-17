@@ -1,16 +1,16 @@
 nav.topic-date-nav {
   display: flex;
   justify-content: space-between;
-	align-items: center;
+  align-items: center;
   margin: 1rem 0;
 }
 
 nav.topic-date-nav button {
-	border: 0;
-	background: transparent;
-	line-height: 0;
+  border: 0;
+  background: transparent;
+  line-height: 0;
 }
 
 nav.topic-date-nav button[disabled] {
-	opacity: 0.5;
+  opacity: 0.5;
 }
