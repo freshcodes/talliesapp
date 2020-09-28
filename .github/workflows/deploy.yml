@@ -35,4 +35,5 @@ jobs:
       with:
         args: deploy --only hosting
       env:
+        PROJECT_ID: ${{ secrets.FIREBASE_PROJECT_ID }}
         FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
