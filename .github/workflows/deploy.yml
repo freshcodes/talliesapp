@@ -30,9 +30,9 @@ jobs:
         npm test
         npm run build
 
-      - name: Deploy to Firebase
-        uses: w9jds/firebase-action@v1
-        with:
-          args: deploy --only hosting
-        env:
-          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+    - name: Deploy to Firebase
+      uses: w9jds/firebase-action@v1
+      with:
+        args: deploy --only hosting
+      env:
+        FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
