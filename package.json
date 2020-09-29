@@ -82,7 +82,7 @@
   "dependencies": {
     "firebase": "7.21.1",
     "firebaseui": "^4.6.1",
-    "preact": "^10.5.2",
+    "preact": "^10.5.3",
     "preact-render-to-string": "^5.1.10",
     "preact-router": "^3.2.1",
     "unistore": "^3.5.2"
