@@ -80,7 +80,7 @@
     "stylelint-config-standard": "^20.0.0"
   },
   "dependencies": {
-    "firebase": "7.21.1",
+    "firebase": "8.2.4",
     "firebaseui": "^4.6.1",
     "preact": "^10.5.3",
     "preact-render-to-string": "^5.1.12",
